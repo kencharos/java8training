@@ -1,18 +1,16 @@
 package schoo.java8.lesson2;
 
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
+import java.util.*;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
-public class StreamSample7 {
+public class StreamNgCase {
 
     public static void main(String[] args) throws IOException {
 
         ng();
-        ok();
+        //ok();
     }
 
     private static void ok() {
@@ -47,6 +45,15 @@ public class StreamSample7 {
                 .map(x -> x + 1)
                 .forEach(x -> list.add(x));
         System.out.println(list);
+
+        // NG. 最初の1件が並列化するとわからない。
+        OptionalInt res =  IntStream.range(1, 2000)
+                .parallel()
+                .peek(n -> System.out.println(n))
+                .filter(n -> n % 4 == 0)
+                .findFirst();
+
+        System.out.println("Answer=" + res.getAsInt());
     }
 
 }
