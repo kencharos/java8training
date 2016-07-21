@@ -4,7 +4,6 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -15,45 +14,23 @@ public class StreamSample3 {
 
     public static void main(String[] args) throws IOException{
 
-        makeFile();
-
-        try(Stream<String> file = Files.lines(Paths.get("sample.txt"))) {
-            file.skip(100).limit(100).forEach(System.out::println);
-        }
+        Arrays.asList(1,2,3,4,5).stream()
+                .collect(Collectors.reducing((a,b) -> a * b))
+                //.collect(Collectors.reducing((a,b) -> a + b)) // 和の場合
+                .ifPresent(System.out::println);
 
         byLoop();
     }
 
     private static void byLoop() throws IOException{
 
-        try(BufferedReader r = Files.newBufferedReader(Paths.get("sample.txt"))) {
-            int skip = 0;
-            int count = 0;
-            String line = null;
-            while((line = r.readLine()) != null) {
-                if (skip < 100) {
-                    skip++;
-                    continue;
-                }
-                System.out.println(line);
-                count++;
-                if(count >= 100) {
-                    break;
-                }
-            }
+        List<Integer> list = Arrays.asList(1,2,3,4,5);
+        int product = 1; // 合計の場合 0
+        for (Integer x : list) {
+            product = product * x; // 合計の場合 prroduct + x;
         }
+        System.out.println(product);
+
     }
 
-    private static void makeFile() {
-
-        try {
-            Files.write(Paths.get("sample.txt"),
-                    IntStream.rangeClosed(1,1000).boxed().map(i -> "Line." + i)
-                            .collect(Collectors.toList()));
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
-
-
-    }
 }

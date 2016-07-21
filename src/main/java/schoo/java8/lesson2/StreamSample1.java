@@ -7,18 +7,35 @@ import java.util.stream.Stream;
 public class StreamSample1 {
 
     public static void main(String[] args) {
-        boolean negative = Stream.of(1, 2, 23, -4, 5, -6)
+        boolean anyNegative = Stream.of(1, 2, 23, -4, 5, -6)
                 .anyMatch(n -> n < 0);
+        System.out.println(anyNegative); // true
+        boolean allNegative = Stream.of(1, 2, 23, -4, 5, -6)
+                .allMatch(n -> n < 0);
+        System.out.println(allNegative); // false
+
+        byLoop();
     }
 
     private static void byLoop() {
 
         int[] array = {1, 2, 23, -4, 5, -6};
-        boolean negative = false;
+        boolean anyNegative = false;
         for(int n : array) {
             if (n < 0) {
-                negative = true;
+                anyNegative = true;
             }
         }
+        System.out.println(anyNegative); // true
+
+        boolean allNegative = true;
+        for(int n : array) {
+            if (n < 0) {
+                allNegative = false;
+            }
+        }
+        System.out.println(allNegative); // false
+
+
     }
 }
