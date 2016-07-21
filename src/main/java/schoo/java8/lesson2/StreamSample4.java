@@ -19,7 +19,6 @@ public class StreamSample4 {
                 .ifPresent(System.out::println);
 
         byLoop();
-
     }
 
     private static void byLoop() throws IOException{

@@ -14,6 +14,8 @@ public class Sample {
 
     private static void byLoop() {
 
+
+
         List<Integer> list = Arrays.asList(-1,0,1,2);
         for(Integer x : list) {
             Integer y = x * x;

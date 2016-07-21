@@ -19,13 +19,13 @@ public class Find {
 
         List<String> list = Arrays.asList("Java", "Lambda", "Method");
 
-        boolean res = find(list, x -> x.equals("Java"));
+        boolean res = find(list, x -> x.equals("Java"));  // true
         System.out.println(res);
 
-        res = find(list, x -> x.length() < 4);
+        res = find(list, x -> x.length() < 4);  // false
         System.out.println(res);
 
-        res = find(list, x -> x.startsWith("M"));
+        res = find(list, x -> x.startsWith("M")); // true
         System.out.println(res);
 
 

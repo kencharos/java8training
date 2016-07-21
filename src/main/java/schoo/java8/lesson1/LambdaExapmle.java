@@ -5,11 +5,12 @@ import java.util.*;
 public class LambdaExapmle {
 
     public static void main(String[] args) {
-        byLambda();
-        byNotlambda();
+        listForEach();
+        mapForEach();
+        mapCompute();
     }
 
-    public static void byNotlambda() {
+    public static void listForEach() {
 
         List<String> list = Arrays.asList("java", "xml", "lambda");
 
@@ -17,10 +18,32 @@ public class LambdaExapmle {
             System.out.println(x);
         }
 
+        // リストの中身を表示
+        list.forEach(x -> System.out.println(x));
+
+
+
+    }
+
+    public static void mapForEach() {
 
         Map<String, Integer> map = new HashMap<>();
         map.put("A", 3);
         map.put("B", 4);
+
+        for (Map.Entry<String, Integer> entry : map.entrySet()) {
+            System.out.println(entry.getKey() + ":" + entry.getValue());
+        }
+
+        map.forEach((k,v) -> System.out.println(k + ":" + v));
+    }
+
+    private static void mapCompute() {
+
+        Map<String, Integer> map = new HashMap<>();
+        map.put("A", 3);
+        map.put("B", 4);
+
 
         if (map.containsKey("B")) {
             map.put("B", map.get("B") + 1);
@@ -38,14 +61,7 @@ public class LambdaExapmle {
             System.out.println(entry.getKey() + ":" + entry.getValue());
         }
 
-    }
 
-    private static void byLambda() {
-        List<String> list = Arrays.asList("java", "xml", "lambda");
-        // リストの中身を表示
-        list.forEach(x -> System.out.println(x));
-
-        Map<String, Integer> map = new HashMap<>();
         map.put("A", 3);
         map.put("B", 4);
 
