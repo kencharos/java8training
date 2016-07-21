@@ -27,9 +27,13 @@ public class Sample {
                 .collect(Collectors.joining(",", "(", ")"));
         System.out.println(join); //(a,b,c,d)
 
-        double avg = Arrays.asList(1,5,8,11).stream()
-                .collect(Collectors.averagingDouble(s -> (double)s));
-        System.out.println(avg); // 6.25
+        Arrays.asList(1,2,3,4,5).stream()
+                .collect(Collectors.reducing((a,b) -> a * b))
+                .ifPresent(System.out::println); // 120
+
+        List<Integer> nums = Stream.of(1,2,3,4)
+                .map(n -> n * n).collect(Collectors.toList());
+        System.out.println(nums); // 1,4,9,16
 
         Arrays.asList("apple","ant","banana","character").stream()
                 .collect(Collectors.groupingBy(w -> w.charAt(0)))
@@ -39,6 +43,9 @@ public class Sample {
                 .collect(Collectors.toMap(s -> s.substring(0,3), s -> s.substring(4) ));
         System.out.println(map);
 
+        double avg = Arrays.asList(1,5,8,11).stream()
+                .collect(Collectors.averagingDouble(s -> (double)s));
+        System.out.println(avg); // 6.25
 
 
 
